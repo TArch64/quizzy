@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  api:
+    image: quizzy-node
+    build:
+      context: .
+      dockerfile: node.Dockerfile
+    command: npm run --workspace api start:dev
+    restart: on-failure
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
+      - node_libs:/app/node_modules
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+
+volumes:
+  node_libs:
+    driver: local
