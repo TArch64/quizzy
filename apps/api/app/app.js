@@ -1,3 +1,5 @@
+import { Router } from 'express';
+
 export class App {
     #server;
     #config;
@@ -9,13 +11,19 @@ export class App {
         this.#logger = logger;
     }
 
+    useMiddleware(middleware) {
+        this.#server.use(middleware);
+    }
+
+    useController(controller) {
+        const router = new Router();
+        controller.defineRoutes(router);
+        this.#server.use(`/api/${controller.prefix}`, router);
+    }
+
     start() {
         const { port, host } = this.#config.server;
         this.#server.listen(port, host, this.#onStart.bind(this));
-    }
-
-    useMiddleware(middleware) {
-        this.#server.use(middleware);
     }
 
     #onStart() {

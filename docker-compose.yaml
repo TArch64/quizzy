@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: node.Dockerfile
     command: npm run --workspace api start:dev
-    restart: on-failure
+    restart: always
     stdin_open: true
     tty: true
     volumes:
@@ -15,10 +15,12 @@ services:
       - node_libs:/app/node_modules
     env_file:
       - .env
+    depends_on:
+      - db
 
   nginx:
     image: nginx:1.24.0-alpine
-    restart: on-failure
+    restart: always
     stdin_open: true
     tty: true
     volumes:
@@ -28,6 +30,18 @@ services:
     depends_on:
       - api
 
+  db:
+    image: postgres:15-alpine
+    restart: always
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
 volumes:
   node_libs:
+    driver: local
+  db_data:
     driver: local
