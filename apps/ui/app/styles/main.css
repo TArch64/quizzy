@@ -1,1 +1,20 @@
 @import "normalize.css/normalize.css";
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-sans-serf);
+}
+
+:root {
+    --font-sans-serf: 'Nunito Sans', sans-serif;
+    --font-cursive: 'Kalam', cursive;
+}
