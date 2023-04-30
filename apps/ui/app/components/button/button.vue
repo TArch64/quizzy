@@ -25,7 +25,7 @@ function Render(_, context) {
             to: props.to,
             class: normalizeClass([context.attrs.class, 'link'])
         };
-        return h(RouterLink, attrs, slots.default());
+        return h(RouterLink, attrs, slots.default);
     }
     const attrs = {
         type: 'button',
@@ -50,6 +50,7 @@ function Render(_, context) {
 .link {
     color: inherit;
     cursor: pointer;
+    text-decoration: none;
 
     &:hover,
     &:focus,

@@ -4,7 +4,7 @@
             Welcome to Quizzy
         </Heading>
 
-        <PrimaryButton class="welcome__create" size="lg">
+        <PrimaryButton class="welcome__create" size="lg" :to="{ name: 'new' }">
             Create Quiz
         </PrimaryButton>
     </div>
@@ -12,7 +12,7 @@
 
 <script setup>
 import Heading from "@/components/heading.vue";
-import PrimaryButton from "@/components/primary-button.vue";
+import PrimaryButton from "@/components/button/primary-button.vue";
 </script>
 
 <style scoped>
@@ -22,6 +22,7 @@ import PrimaryButton from "@/components/primary-button.vue";
     height: 100%;
     justify-content: space-evenly;
     align-items: center;
+    text-align: center;
     padding: 20% 32px;
 }
 
