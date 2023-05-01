@@ -1,5 +1,8 @@
 <template>
-    <input :type="type" v-model="model">
+    <label>
+        <input type="radio" :value="option" v-model="model">
+        <slot />
+    </label>
 </template>
 
 <script setup>
@@ -10,10 +13,9 @@ const props = defineProps({
         type: String,
         required: true
     },
-    type: {
-        type: String,
-        required: false,
-        default: 'text'
+    option: {
+        type: [String, Number],
+        required: true
     }
 });
 
