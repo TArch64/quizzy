@@ -21,6 +21,6 @@ export class QuizController extends Controller {
     }
 
     #add(req, res) {
-
+        console.log(req.body);
     }
 }

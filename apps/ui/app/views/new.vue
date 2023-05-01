@@ -34,7 +34,10 @@ async function onFormSubmit() {
 
     if (validation) {
         alert(validation);
+        return;
     }
+
+    await newQuizStore.create();
 }
 </script>
 

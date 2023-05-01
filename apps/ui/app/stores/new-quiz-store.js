@@ -3,6 +3,7 @@ import {defineStore} from "pinia";
 import {v4 as uuid} from "uuid";
 import * as yup from 'yup';
 import {useList} from "@/composables/use-list";
+import {useHttp} from "@/composables/use-http";
 
 const createAnswer = () => ({
     id: uuid(),
@@ -42,6 +43,8 @@ const quizSchema = yup.object({
 });
 
 export const useNewQuizStore = defineStore('new-quiz', () => {
+    const http = useHttp();
+
     const questions = useList([createQuestion()]);
     const addQuestion = () => questions.add(createQuestion());
     const activeQuestion = ref(questions.list[0]);
@@ -66,12 +69,17 @@ export const useNewQuizStore = defineStore('new-quiz', () => {
         }
     }
 
+    async function create() {
+        await http.post('/api/quiz', { questions: questions.list });
+    }
+
     return {
         questions: toRef(questions, 'list'),
         activeQuestion,
         activateQuestion,
         addQuestion,
         removeQuestion,
-        validate
+        validate,
+        create
     };
 });
