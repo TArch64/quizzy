@@ -15,6 +15,7 @@
 
             <Button
                 class="quiz-new__questions-item__delete"
+                look="link"
                 @click="newQuizStore.removeQuestion(question.id)"
                 v-if="newQuizStore.questions.length > 1"
             >
@@ -22,7 +23,11 @@
             </Button>
         </li>
 
-        <Button class="quiz-new__questions-add" @click="newQuizStore.addQuestion">
+        <Button
+            class="quiz-new__questions-add"
+            look="link"
+            @click="newQuizStore.addQuestion"
+        >
             Add question
         </Button>
     </ul>
@@ -56,10 +61,6 @@ const getQuestionClasses = (question) => ({
     border-left: 3px solid lightgray;
 }
 
-.quiz-new__questions-item:first-of-type {
-    border-top: 1px solid black;
-}
-
 .quiz-new__questions-item:last-of-type {
     margin-bottom: 16px;
 }
@@ -83,6 +84,5 @@ const getQuestionClasses = (question) => ({
     display: block;
     margin: auto;
     width: 100%;
-    padding: 8px 16px;
 }
 </style>

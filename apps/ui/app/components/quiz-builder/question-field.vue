@@ -26,10 +26,11 @@ const activeQuestion = toRef(newQuizStore, 'activeQuestion');
 
 <style scoped>
 .question-field {
-    padding: 8px 16px;
+    padding: 16px;
 }
 
 .question-field__question {
+    margin-left: 8px;
     margin-bottom: 32px;
 }
 

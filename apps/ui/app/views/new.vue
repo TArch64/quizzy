@@ -1,10 +1,16 @@
 <template>
     <form class="quiz-new" @submit.prevent="onFormSubmit">
-        <aside class="quiz-new__aside">
+        <header class="quiz-new__header">
             <Heading class="quiz-new__heading" level="1">
                 Create a new Quiz
             </Heading>
 
+            <Button look="primary" type="submit">
+                Create
+            </Button>
+        </header>
+
+        <aside class="quiz-new__aside">
             <QuestionsMenu />
         </aside>
 
@@ -19,32 +25,46 @@ import Heading from "@/components/heading.vue";
 import QuestionField from "@/components/quiz-builder/question-field.vue";
 import QuestionsMenu from "@/components/quiz-builder/questions-menu.vue";
 import {useNewQuizStore} from "@/stores/new-quiz-store";
+import Button from "@/components/button/button.vue";
 
-const onFormSubmit = () => {
-    console.log('submit');
-};
+const newQuizStore = useNewQuizStore();
+
+async function onFormSubmit() {
+    const validation = await newQuizStore.validate();
+
+    if (validation) {
+        alert(validation);
+    }
+}
 </script>
 
 <style scoped>
 .quiz-new {
-    display: flex;
+    display: grid;
     height: 100%;
+    grid-template-areas: "header header" "aside question-editor";
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto 1fr;
+}
+
+.quiz-new__header {
+    grid-area: header;
+    border-bottom: 1px solid black;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .quiz-new__aside {
-    width: 300px;
+    grid-area: aside;
     flex-shrink: 0;
     border-right: 1px solid black;
-    padding-top: 16px;
     padding-bottom: 16px;
 }
 
 .quiz-new__question-editor {
-    flex-grow: 1;
-}
-
-.quiz-new__heading {
-    margin-bottom: 16px;
-    text-align: center;
+    grid-area: question-editor;
+    max-width: 700px;
 }
 </style>

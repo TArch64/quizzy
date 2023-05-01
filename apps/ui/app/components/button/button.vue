@@ -1,14 +1,24 @@
 <template>
-    <Render />
+    <Render :class="classes" />
 </template>
 
 <script setup>
-import {h, normalizeClass, useSlots} from "vue";
+import {computed, h, normalizeClass, useSlots} from "vue";
 import {RouterLink} from "vue-router";
 
 const props = defineProps({
     to: {
         type: [Object, String],
+        required: false,
+        default: ''
+    },
+    size: {
+        type: String,
+        required: false,
+        default: 'md'
+    },
+    look: {
+        type: String,
         required: false,
         default: ''
     }
@@ -35,6 +45,11 @@ function Render(_, context) {
     }
     return h('button', attrs, slots.default());
 }
+
+const classes = computed(() => ({
+    [`button--${props.size}`]: !!props.size,
+    [`button--${props.look}`]: !!props.look
+}));
 </script>
 
 <style scoped>
@@ -56,6 +71,28 @@ function Render(_, context) {
     &:focus,
     &:active {
         color: inherit;
+    }
+}
+
+.button--md {
+    font-size: 14px;
+    padding: 8px 16px;
+}
+
+.button--lg {
+    font-size: 18px;
+    padding: 16px 24px;
+}
+
+.button--link:hover {
+    text-decoration: underline;
+}
+
+.button--primary {
+    border: 1px solid rgba(0, 0, 0, 0.6);
+
+    &:hover {
+        border-color: black;
     }
 }
 </style>
