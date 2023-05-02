@@ -2,15 +2,11 @@ import chalk from "chalk";
 
 export class Logger {
     info(message) {
-        console.info(this.#formatMessage(message));
+        console.info(chalk.yellow(`[${this.#time}]: ${message}`));
     }
 
-    #formatMessage(message) {
-        return this.#prefix + message.toString();
-    }
-
-    get #prefix() {
-        return chalk.yellow(`[${this.#time}]: `);
+    error(message) {
+        console.error(chalk.red(`[${this.#time}]: ${message}`));
     }
 
     get #time() {

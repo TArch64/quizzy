@@ -3,10 +3,12 @@ import {Controller} from "../core/controller.js";
 export class QuizController extends Controller {
     prefix = 'quiz';
     #quizRepository;
+    #newQuizService;
 
-    constructor({ quizRepository }) {
+    constructor({ quizRepository, newQuizService }) {
         super();
         this.#quizRepository = quizRepository;
+        this.#newQuizService = newQuizService;
     }
 
     defineRoutes(router) {
@@ -20,7 +22,8 @@ export class QuizController extends Controller {
         res.json({ quiz });
     }
 
-    #add(req, res) {
-        console.log(req.body);
+    async #add(req, res) {
+        const quiz = await this.#newQuizService.create(req.body);
+        res.json({ quiz });
     }
 }

@@ -89,10 +89,11 @@ const classes = computed(() => ({
 }
 
 .button--primary {
-    border: 1px solid rgba(0, 0, 0, 0.6);
+    background-color: #000;
+    color: #FFF;
 
     &:hover {
-        border-color: black;
+        background-color: rgba(0, 0, 0, 0.8);
     }
 }
 </style>
