@@ -2,12 +2,12 @@ import {Controller} from "../core/controller.js";
 
 export class QuizController extends Controller {
     prefix = 'quiz';
-    #quizRepository;
+    #prisma;
     #newQuizService;
 
-    constructor({ quizRepository, newQuizService }) {
+    constructor({ prisma, newQuizService }) {
         super();
-        this.#quizRepository = quizRepository;
+        this.#prisma = prisma;
         this.#newQuizService = newQuizService;
     }
 
@@ -17,8 +17,9 @@ export class QuizController extends Controller {
     }
 
     async #byId(req, res) {
-        const { id } = req.params;
-        const quiz = await this.#quizRepository.findById(id);
+        const quiz = await this.#prisma.quiz.findUnique({
+            where: { id: req.params.id }
+        });
         res.json({ quiz });
     }
 

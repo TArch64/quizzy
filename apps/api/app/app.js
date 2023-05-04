@@ -21,9 +21,15 @@ export class App {
         this.#server.use(`/api/${controller.prefix}`, router);
     }
 
-    start() {
-        const { port, host } = this.#config.server;
-        this.#server.listen(port, host, this.#onStart.bind(this));
+    async start() {
+        return new Promise(resolve => {
+            const { port, host } = this.#config.server;
+
+            this.#server.listen(port, host, () => {
+                this.#onStart();
+                resolve();
+            });
+        })
     }
 
     #onStart() {

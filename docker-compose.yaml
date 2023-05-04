@@ -16,7 +16,7 @@ services:
   ui:
     build:
       context: .
-      dockerfile: node.Dockerfile
+      dockerfile: apps/ui/Dockerfile
     command: npm run --workspace ui start:dev
     restart: always
     stdin_open: true
@@ -30,10 +30,9 @@ services:
       - api
 
   api:
-    image: quizzy-node
     build:
       context: .
-      dockerfile: node.Dockerfile
+      dockerfile: apps/api/Dockerfile
     command: npm run --workspace api start:dev
     restart: always
     stdin_open: true

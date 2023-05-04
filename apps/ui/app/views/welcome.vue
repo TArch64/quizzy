@@ -4,15 +4,15 @@
             Welcome to Quizzy
         </Heading>
 
-        <PrimaryButton class="welcome__create" size="lg" :to="{ name: 'new' }">
+        <Button class="welcome__create" look="primary" size="lg" :to="{ name: 'new' }">
             Create Quiz
-        </PrimaryButton>
+        </Button>
     </div>
 </template>
 
 <script setup>
 import Heading from "@/components/heading.vue";
-import PrimaryButton from "@/components/button/primary-button.vue";
+import Button from "@/components/button/button.vue";
 </script>
 
 <style scoped>
