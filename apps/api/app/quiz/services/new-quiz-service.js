@@ -11,26 +11,27 @@ export class NewQuizService {
         return this.#prisma.quiz.create({
             data: {
                 questions: {
-                    create: data.questions.map(questionData => ({
-                        id: questionData.id,
-                        question: questionData.question,
-                        correct: questionData.correct,
-                        answers: {
-                            create: questionData.answers.map(answerData => ({
-                                id: answerData.id,
-                                text: answerData.text
-                            }))
-                        }
-                    }))
-                }
-            },
-            include: {
-                questions: {
-                    include: {
-                        answers: true
-                    }
+                    create: data.questions.map(this.#formatQuestionRecord.bind(this))
                 }
             }
         });
+    }
+
+    #formatQuestionRecord(data) {
+        return {
+            id: data.id,
+            question: data.question,
+            correct: data.correct,
+            answers: {
+                create: data.answers.map(this.#formatAnswerRecord.bind(this))
+            }
+        }
+    }
+
+    #formatAnswerRecord(data) {
+        return {
+            id: data.id,
+            text: data.text
+        };
     }
 }
