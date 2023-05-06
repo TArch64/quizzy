@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,9 +9,19 @@ export const router = createRouter({
             component: () => import('./views/welcome')
         },
         {
-            name: 'new',
-            path: '/quiz/new',
-            component: () => import('./views/new')
+            path: '/quiz',
+            children: [
+                {
+                    name: 'new',
+                    path: 'new',
+                    component: () => import('./views/new'),
+                },
+                {
+                    name: 'new-success',
+                    path: ':quizId/success',
+                    component: () => import('./views/new-success')
+                }
+            ]
         }
     ]
-})
+});

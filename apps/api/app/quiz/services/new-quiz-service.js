@@ -7,7 +7,7 @@ export class NewQuizService {
         this.#prisma = options.prisma;
     }
 
-    async create(data) {
+    create(data) {
         return this.#prisma.quiz.create({
             data: {
                 questions: {

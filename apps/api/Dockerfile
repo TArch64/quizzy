@@ -1,5 +1,3 @@
-FROM node:18.16-buster
+FROM node:18-slim
 
 WORKDIR /app
-
-RUN apt-get update -y && apt-get install -y openssl

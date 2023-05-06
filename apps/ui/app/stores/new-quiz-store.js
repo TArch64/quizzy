@@ -46,9 +46,14 @@ export const useNewQuizStore = defineStore('new-quiz', () => {
     const http = useHttp();
 
     const questions = useList([createQuestion()]);
-    const addQuestion = () => questions.add(createQuestion());
     const activeQuestion = ref(questions.list[0]);
     const activateQuestion = (question) => activeQuestion.value = question;
+
+    function addQuestion() {
+        const question = createQuestion();
+        questions.add(question);
+        activateQuestion(question);
+    }
 
     function removeQuestion(id) {
         const index = questions.list.findIndex(q => q.id === id);
@@ -70,7 +75,8 @@ export const useNewQuizStore = defineStore('new-quiz', () => {
     }
 
     async function create() {
-        await http.post('/api/quiz', { questions: questions.list });
+        const { quiz } = await http.post('/api/quiz', { questions: questions.list });
+        return quiz;
     }
 
     return {

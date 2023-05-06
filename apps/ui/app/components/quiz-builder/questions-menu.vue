@@ -10,7 +10,7 @@
                 class="quiz-new__questions-item__title"
                 @click="newQuizStore.activateQuestion(question)"
             >
-                Question #{{ index }}
+                {{ question.question || `Question #${index}` }}
             </Button>
 
             <Button

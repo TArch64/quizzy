@@ -21,6 +21,7 @@
 </template>
 
 <script setup>
+import {useRouter} from "vue-router";
 import Heading from "@/components/heading.vue";
 import QuestionField from "@/components/quiz-builder/question-field.vue";
 import QuestionsMenu from "@/components/quiz-builder/questions-menu.vue";
@@ -28,6 +29,7 @@ import {useNewQuizStore} from "@/stores/new-quiz-store";
 import Button from "@/components/button/button.vue";
 
 const newQuizStore = useNewQuizStore();
+const router = useRouter();
 
 async function onFormSubmit() {
     const validation = await newQuizStore.validate();
@@ -37,7 +39,9 @@ async function onFormSubmit() {
         return;
     }
 
-    await newQuizStore.create();
+    const quiz = await newQuizStore.create();
+
+    await router.push({ name: 'new-success', params: { quizId: quiz.id } });
 }
 </script>
 
