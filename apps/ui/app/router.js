@@ -25,11 +25,16 @@ export const router = createRouter({
         },
         {
             path: '/play/:quizId',
+            component: () => import('./views/play/play'),
             children: [
                 {
-                    name: 'play',
                     path: '',
-                    component: () => import('./views/play/play')
+                    component: () => import('./views/play/play-loader')
+                },
+                {
+                    name: 'play-question',
+                    path: 'questions/:questionId',
+                    component: () => import('./views/play/play-question')
                 }
             ]
         }

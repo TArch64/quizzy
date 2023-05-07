@@ -1,10 +1,8 @@
 export class NewQuizService {
-    #logger;
     #prisma;
 
-    constructor(options) {
-        this.#logger = options.logger;
-        this.#prisma = options.prisma;
+    constructor({ prisma }) {
+        this.#prisma = prisma;
     }
 
     create(data) {

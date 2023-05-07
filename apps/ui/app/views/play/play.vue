@@ -1,11 +1,17 @@
 <template>
-    <Button look="link" @click="start">
-        Start Quiz!
-    </Button>
+    <RouterView />
 </template>
 
 <script setup>
-import Button from "@/components/button/button.vue";
+import {useRoute, useRouter} from "vue-router";
+import {usePlayStore} from "@/stores/play-store";
 
-const start = () => {};
+const playStore = usePlayStore();
+const router = useRouter();
+const route = useRoute();
+
+playStore.loadOrder(route.params.quizId).then(() => {
+    const [questionId] = playStore.order;
+    router.push({ name: 'play-question', params: { questionId } });
+});
 </script>

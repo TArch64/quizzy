@@ -4,26 +4,26 @@ export class QuizController extends Controller {
     prefix = 'quiz';
     #prisma;
     #newQuizService;
+    #playQuizService;
 
-    constructor({ prisma, newQuizService }) {
+    constructor({ prisma, newQuizService, playQuizService }) {
         super();
         this.#prisma = prisma;
         this.#newQuizService = newQuizService;
+        this.#playQuizService = playQuizService;
     }
 
     defineRoutes(router) {
-        router.get('/:id', this.#byId.bind(this));
-        router.post('/', this.#add.bind(this));
+        router.post('/', this.add.bind(this));
+        router.get('/:id/order', this.questionOrder.bind(this));
     }
 
-    async #byId(req, res) {
-        const quiz = await this.#prisma.quiz.findUnique({
-            where: { id: req.params.id }
-        });
-        res.json({ quiz });
+    async questionOrder(req, res) {
+        const order = await this.#playQuizService.getOrder(req.params.id);
+        res.json({ order });
     }
 
-    async #add(req, res) {
+    async add(req, res) {
         const quiz = await this.#newQuizService.create(req.body);
         res.json({ quiz });
     }

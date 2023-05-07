@@ -1,8 +1,8 @@
 <template>
     <div class="new-success">
-        <h1 class="new-success__title">
+        <Heading class="new-success__title" level="1">
             Quiz Created!
-        </h1>
+        </Heading>
 
         <div class="new-success__actions">
             <Button look="primary" :to="playLinkPath">
@@ -19,6 +19,7 @@ import {computed} from "vue";
 import {useRoute} from "vue-router";
 import CopyButton from "@/components/button/copy-button.vue";
 import Button from "@/components/button/button.vue";
+import Heading from "@/components/heading.vue";
 
 const route = useRoute();
 
@@ -37,7 +38,6 @@ const playLink = computed(() => new URL(location.origin + playLinkPath.value));
 }
 
 .new-success__title {
-    margin-top: 0;
     margin-bottom: 32px;
 }
 
