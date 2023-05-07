@@ -94,6 +94,7 @@ const classes = computed(() => ({
 
     &:hover {
         background-color: rgba(0, 0, 0, 0.8);
+        color: #FFF;
     }
 }
 </style>

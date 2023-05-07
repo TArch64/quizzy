@@ -4,7 +4,13 @@
             Quiz Created!
         </h1>
 
-        <CopyButton :copy-text="playLink" text="Copy Link" />
+        <div class="new-success__actions">
+            <Button look="primary" :to="playLinkPath">
+                Play
+            </Button>
+
+            <CopyButton :copy-text="playLink" text="Copy Link" />
+        </div>
     </div>
 </template>
 
@@ -12,11 +18,13 @@
 import {computed} from "vue";
 import {useRoute} from "vue-router";
 import CopyButton from "@/components/button/copy-button.vue";
+import Button from "@/components/button/button.vue";
 
 const route = useRoute();
 
 const quizId = computed(() => route.params.quizId);
-const playLink = computed(() => new URL(`${location.origin}/play/${quizId.value}`));
+const playLinkPath = computed(() => `/play/${quizId.value}`);
+const playLink = computed(() => new URL(location.origin + playLinkPath.value));
 </script>
 
 <style scoped>
@@ -31,5 +39,11 @@ const playLink = computed(() => new URL(`${location.origin}/play/${quizId.value}
 .new-success__title {
     margin-top: 0;
     margin-bottom: 32px;
+}
+
+.new-success__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>

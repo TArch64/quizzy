@@ -14,12 +14,22 @@ export const router = createRouter({
                 {
                     name: 'new',
                     path: 'new',
-                    component: () => import('./views/new'),
+                    component: () => import('./views/quiz/new'),
                 },
                 {
                     name: 'new-success',
                     path: ':quizId/success',
-                    component: () => import('./views/new-success')
+                    component: () => import('./views/quiz/new-success')
+                }
+            ]
+        },
+        {
+            path: '/play/:quizId',
+            children: [
+                {
+                    name: 'play',
+                    path: '',
+                    component: () => import('./views/play/play')
                 }
             ]
         }
