@@ -14,4 +14,11 @@ export class PlayQuizService {
         });
         return questions.map((question) => question.id);
     }
+
+    getQuestion(questionId) {
+        return this.#prisma.quizQuestion.findUnique({
+            where: { id: questionId },
+            include: { answers: true }
+        });
+    }
 }

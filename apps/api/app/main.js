@@ -6,6 +6,7 @@ import {Logger} from "./core/logger.js";
 import {QuizController} from "./quiz/quiz-controller.js";
 import {NewQuizService} from "./quiz/services/new-quiz-service.js";
 import {PlayQuizService} from "./quiz/services/play-quiz-service.js";
+import {QuizQuestionController} from "./quiz/quiz-question-controller.js";
 
 const config = new Config({ env: process.env });
 const logger = new Logger();
@@ -21,14 +22,11 @@ app.useMiddleware(json());
 
 const newQuizService = new NewQuizService({ prisma });
 const playQuizService = new PlayQuizService({ prisma });
-
-const quizController = new QuizController({
-    prisma,
-    newQuizService,
-    playQuizService
-});
-
+const quizController = new QuizController({ newQuizService, playQuizService });
 app.useController(quizController);
+
+const quizQuestionController = new QuizQuestionController({ playQuizService })
+app.useController(quizQuestionController);
 
 await prisma.$connect();
 await app.start();

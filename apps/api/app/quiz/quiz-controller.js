@@ -2,13 +2,11 @@ import {Controller} from "../core/controller.js";
 
 export class QuizController extends Controller {
     prefix = 'quiz';
-    #prisma;
     #newQuizService;
     #playQuizService;
 
-    constructor({ prisma, newQuizService, playQuizService }) {
+    constructor({ newQuizService, playQuizService }) {
         super();
-        this.#prisma = prisma;
         this.#newQuizService = newQuizService;
         this.#playQuizService = playQuizService;
     }

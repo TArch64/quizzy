@@ -40,6 +40,7 @@ services:
     volumes:
       - .:/app
       - node_libs:/app/node_modules
+      - ./tmp:/app/tmp
     env_file:
       - .env
     depends_on:
