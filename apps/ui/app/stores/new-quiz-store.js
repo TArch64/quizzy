@@ -20,9 +20,9 @@ function createQuestion() {
 
     return {
         id: uuid(),
-        question: '',
+        text: '',
         answers,
-        correct: answers[0].id
+        correctId: answers[0].id
     };
 }
 
@@ -33,9 +33,9 @@ const quizAnswerSchema = yup.object({
 
 const quizQuestionSchema = yup.object({
     id: yup.string().required().uuid(),
-    question: yup.string().required(),
+    text: yup.string().required(),
     answers: yup.array().length(4).of(quizAnswerSchema),
-    correct: yup.string().uuid().required()
+    correctId: yup.string().uuid().required()
 });
 
 const quizSchema = yup.object({

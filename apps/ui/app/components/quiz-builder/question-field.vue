@@ -1,7 +1,7 @@
 <template>
     <div class="question-field">
         <label>Question</label>
-        <TextField class="question-field__question" v-model="activeQuestion.question" />
+        <TextField class="question-field__question" v-model="activeQuestion.text" />
 
         <AnswerField
             class="question-field__answer"

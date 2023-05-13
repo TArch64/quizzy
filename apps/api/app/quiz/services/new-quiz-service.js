@@ -18,8 +18,8 @@ export class NewQuizService {
     #formatQuestionRecord(data) {
         return {
             id: data.id,
-            question: data.question,
-            correct: data.correct,
+            text: data.text,
+            correctId: data.correctId,
             answers: {
                 create: data.answers.map(this.#formatAnswerRecord.bind(this))
             }

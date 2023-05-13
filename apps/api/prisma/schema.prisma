@@ -15,8 +15,8 @@ model Quiz {
 
 model QuizQuestion {
   id              String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  question        String
-  correct         String             @unique @db.Uuid
+  text            String             @map("question")
+  correctId       String             @unique @map("correct") @db.Uuid
   quizId          String             @db.Uuid
   quiz            Quiz               @relation(fields: [quizId], references: [id], onDelete: Cascade)
   answers         QuizAnswer[]

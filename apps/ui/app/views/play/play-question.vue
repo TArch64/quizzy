@@ -2,7 +2,7 @@
     <div class="play-question">
         <div class="play-question__question">
             <Heading level="1" class="play-question__question-text">
-                {{ playStore.activeQuestion.question }}
+                {{ playStore.activeQuestion.text }}
             </Heading>
         </div>
 
@@ -23,21 +23,13 @@
 </template>
 
 <script setup>
-import {onBeforeRouteUpdate, useRoute, useRouter} from "vue-router";
+import {useRouter} from "vue-router";
 import {usePlayStore} from "@/stores/play-store";
 import Heading from "@/components/heading";
 import Button from "@/components/button/button";
 
 const playStore = usePlayStore();
-const route = useRoute();
 const router = useRouter();
-
-playStore.setQuestionId(route.params.questionId);
-
-onBeforeRouteUpdate((to, from, next) => {
-    playStore.setQuestionId(to.params.questionId);
-    next();
-});
 
 async function selectAnswer(answer) {
     const data = await playStore.selectAnswer(answer);
@@ -48,14 +40,6 @@ async function selectAnswer(answer) {
             params: { resultId: data.resultId },
         });
     }
-
-    return router.push({
-        name: 'play-question',
-        params: {
-            quizId: playStore.activeQuiz.id,
-            questionId: data.nextQuestionId,
-        }
-    });
 }
 </script>
 

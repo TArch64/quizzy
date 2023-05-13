@@ -3,7 +3,7 @@
         <label>Answer #{{ position }}</label>
         <TextField class="answer-field__text-field" v-model="answer.text" />
 
-        <Radio :option="answer.id" v-model="question.correct">
+        <Radio :option="answer.id" v-model="question.correctId">
             Correct answer
         </Radio>
     </div>

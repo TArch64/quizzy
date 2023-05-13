@@ -41,6 +41,28 @@ export class PlayQuizService {
     getResultById(resultId) {
         return this.#prisma.quizResult.findUnique({
             where: { id: resultId },
+
+            select: {
+                answers: {
+                    select: {
+                        selectedId: true,
+
+                        question: {
+                            select: {
+                                text: true,
+                                correctId: true,
+
+                                answers: {
+                                    select: {
+                                        id: true,
+                                        text: true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         });
     }
 }
