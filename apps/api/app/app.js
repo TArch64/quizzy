@@ -17,7 +17,7 @@ export class App {
 
     useController(controller) {
         const router = new Router();
-        controller.defineRoutes(router);
+        controller.attach(router);
         this.#server.use(`/api/${controller.prefix}`, router);
     }
 

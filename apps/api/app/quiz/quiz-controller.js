@@ -9,20 +9,18 @@ export class QuizController extends Controller {
         super();
         this.#newQuizService = newQuizService;
         this.#playQuizService = playQuizService;
+
+        this.handlePost('/', this.add.bind(this));
+        this.handleGet('/:id', this.byId.bind(this));
     }
 
-    defineRoutes(router) {
-        router.post('/', this.add.bind(this));
-        router.get('/:id', this.byId.bind(this));
-    }
-
-    async byId(req, res) {
+    async byId(req) {
         const quiz = await this.#playQuizService.getQuizById(req.params.id);
-        res.json({ quiz });
+        return { quiz };
     }
 
-    async add(req, res) {
+    async add(req) {
         const quiz = await this.#newQuizService.create(req.body);
-        res.json({ quiz });
+        return { quiz };
     }
 }
