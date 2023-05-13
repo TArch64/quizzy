@@ -1,7 +1,7 @@
 <template>
-    <div class="play-loader">
+    <div class="play-results">
         <Heading level="1">
-            Loading...
+            Results
         </Heading>
     </div>
 </template>
@@ -10,8 +10,8 @@
 import Heading from "@/components/heading";
 </script>
 
-<style>
-.play-loader {
+<style scoped>
+.play-results {
     height: 100%;
     display: flex;
     align-items: center;

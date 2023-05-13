@@ -11,8 +11,8 @@
 </template>
 
 <script setup>
-import Heading from "@/components/heading.vue";
-import Button from "@/components/button/button.vue";
+import Heading from "@/components/heading";
+import Button from "@/components/button/button";
 </script>
 
 <style scoped>

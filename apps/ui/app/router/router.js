@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import {loadPlayOrderMiddleware} from "@/router/middlewares/load-play-order-middleware";
-import {loadPlayQuestionMiddleware} from "@/router/middlewares/load-play-question-middleware";
+import {loadPlayQuizMiddleware} from "@/router/middlewares/load-play-quiz-middleware";
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,7 +26,7 @@ export const router = createRouter({
         },
         {
             path: '/play/:quizId',
-            beforeEnter: loadPlayOrderMiddleware,
+            beforeEnter: loadPlayQuizMiddleware,
             children: [
                 {
                     path: '',
@@ -36,10 +35,14 @@ export const router = createRouter({
                 {
                     name: 'play-question',
                     path: 'questions/:questionId',
-                    beforeEnter: loadPlayQuestionMiddleware,
                     component: () => import('../views/play/play-question')
                 }
             ]
+        },
+        {
+            name: 'play-result',
+            path: '/play-results/:resultId',
+            component: () => import('../views/play/play-result')
         }
     ]
 });

@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import Button from "@/components/button/button.vue";
+import Button from "@/components/button/button";
 import {useNewQuizStore} from "@/stores/new-quiz-store";
 
 const newQuizStore = useNewQuizStore();

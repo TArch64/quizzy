@@ -16,8 +16,8 @@
 
 <script setup>
 import {toRef} from "vue";
-import TextField from "@/components/form/text-field.vue";
-import AnswerField from "@/components/quiz-builder/answer-field.vue";
+import TextField from "@/components/form/text-field";
+import AnswerField from "@/components/quiz-builder/answer-field";
 import {useNewQuizStore} from "@/stores/new-quiz-store";
 
 const newQuizStore = useNewQuizStore();

@@ -10,20 +10,40 @@ datasource db {
 model Quiz {
   id        String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   questions QuizQuestion[]
+  results   QuizResult[]
 }
 
 model QuizQuestion {
-  id       String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  question String
-  correct  String       @unique @db.Uuid
-  quizId   String       @db.Uuid
-  quiz     Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
-  answers  QuizAnswer[]
+  id              String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  question        String
+  correct         String             @unique @db.Uuid
+  quizId          String             @db.Uuid
+  quiz            Quiz               @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  answers         QuizAnswer[]
+  resultQuestions QuizResultAnswer[]
 }
 
 model QuizAnswer {
+  id            String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  text          String
+  questionId    String             @db.Uuid
+  question      QuizQuestion       @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  resultAnswers QuizResultAnswer[]
+}
+
+model QuizResult {
+  id      String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  quizId  String             @db.Uuid
+  quiz    Quiz               @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  answers QuizResultAnswer[]
+}
+
+model QuizResultAnswer {
   id         String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  text       String
+  resultId   String       @db.Uuid
+  result     QuizResult   @relation(fields: [resultId], references: [id], onDelete: Cascade)
   questionId String       @db.Uuid
-  question   QuizQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  question   QuizQuestion @relation(fields: [questionId], references: [id])
+  selectedId String       @db.Uuid
+  selected   QuizAnswer   @relation(fields: [selectedId], references: [id])
 }

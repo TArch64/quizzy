@@ -13,12 +13,12 @@ export class QuizController extends Controller {
 
     defineRoutes(router) {
         router.post('/', this.add.bind(this));
-        router.get('/:id/order', this.questionOrder.bind(this));
+        router.get('/:id', this.byId.bind(this));
     }
 
-    async questionOrder(req, res) {
-        const order = await this.#playQuizService.getOrder(req.params.id);
-        res.json({ order });
+    async byId(req, res) {
+        const quiz = await this.#playQuizService.getQuizById(req.params.id);
+        res.json({ quiz });
     }
 
     async add(req, res) {

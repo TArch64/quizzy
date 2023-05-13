@@ -2,16 +2,17 @@
     <div class="play-question">
         <div class="play-question__question">
             <Heading level="1" class="play-question__question-text">
-                {{ playStore.question.question }}
+                {{ playStore.activeQuestion.question }}
             </Heading>
         </div>
 
         <div class="play-question__answers">
             <Button
-                v-for="answer of playStore.question.answers"
+                v-for="answer of playStore.activeQuestion.answers"
                 :key="answer.id"
                 look="link"
                 class="play-question__answer"
+                @click="selectAnswer(answer)"
             >
                 <span class="play-question__answer-text">
                     {{ answer.text }}
@@ -22,11 +23,40 @@
 </template>
 
 <script setup>
+import {onBeforeRouteUpdate, useRoute, useRouter} from "vue-router";
 import {usePlayStore} from "@/stores/play-store";
-import Heading from "@/components/heading.vue";
-import Button from "@/components/button/button.vue";
+import Heading from "@/components/heading";
+import Button from "@/components/button/button";
 
 const playStore = usePlayStore();
+const route = useRoute();
+const router = useRouter();
+
+playStore.setQuestionId(route.params.questionId);
+
+onBeforeRouteUpdate((to, from, next) => {
+    playStore.setQuestionId(to.params.questionId);
+    next();
+});
+
+async function selectAnswer(answer) {
+    const data = await playStore.selectAnswer(answer);
+
+    if (data.resultId) {
+        return router.push({
+            name: 'play-result',
+            params: { resultId: data.resultId },
+        });
+    }
+
+    return router.push({
+        name: 'play-question',
+        params: {
+            quizId: playStore.activeQuiz.id,
+            questionId: data.nextQuestionId,
+        }
+    });
+}
 </script>
 
 <style scoped>

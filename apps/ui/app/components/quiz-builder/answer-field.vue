@@ -10,8 +10,8 @@
 </template>
 
 <script setup>
-import TextField from "@/components/form/text-field.vue";
-import Radio from "@/components/form/radio.vue";
+import TextField from "@/components/form/text-field";
+import Radio from "@/components/form/radio";
 
 defineProps({
     question: {

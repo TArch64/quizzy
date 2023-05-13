@@ -17,9 +17,9 @@
 <script setup>
 import {computed} from "vue";
 import {useRoute} from "vue-router";
-import CopyButton from "@/components/button/copy-button.vue";
-import Button from "@/components/button/button.vue";
-import Heading from "@/components/heading.vue";
+import CopyButton from "@/components/button/copy-button";
+import Button from "@/components/button/button";
+import Heading from "@/components/heading";
 
 const route = useRoute();
 

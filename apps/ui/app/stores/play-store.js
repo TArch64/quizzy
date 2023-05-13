@@ -1,33 +1,40 @@
-import {computed, ref} from "vue";
+import {toRef} from "vue";
 import {defineStore} from "pinia";
 import {useHttp} from "@/composables/use-http";
+import {usePlayState} from "@/composables/use-play-state";
 
 export const usePlayStore = defineStore('play', () => {
     const http = useHttp();
-    const activeQuizId = ref(null);
-    const order = ref([]);
-    const question = ref(null);
+    const state = usePlayState();
 
-    async function loadOrder(quizId) {
-        if (activeQuizId.value === quizId) return;
+    async function loadQuiz(quizId) {
+        if (state.activeQuiz?.id === quizId) return;
 
-        activeQuizId.value = quizId;
-        const data = await http.get(`/api/quiz/${quizId}/order`);
-        order.value = data.order;
+        const data = await http.get(`/api/quiz/${quizId}`);
+        state.setQuiz(data.quiz);
     }
 
-    const questionIndex = computed(() => order.value.indexOf(question.value?.id));
-    const nextQuestionId = computed(() => order.value[questionIndex.value + 1]);
+    async function selectAnswer(answer) {
+        state.selectAnswer(answer);
 
-    async function loadQuestion(questionId) {
-        const data = await http.get(`/api/questions/${questionId}`);
-        question.value = data.question;
+        if (state.nextQuestion) {
+            return { nextQuestionId: state.nextQuestion.id };
+        }
+
+        const data = await http.post('/api/quiz-results', {
+            quizId: state.activeQuiz.id,
+            answers: state.answeredQuestions
+        });
+
+        return { resultId: data.result.id }
     }
 
     return {
-        loadOrder,
-        nextQuestionId,
-        loadQuestion,
-        question,
+        activeQuiz: toRef(state, 'activeQuiz'),
+        activeQuestion: toRef(state, 'activeQuestion'),
+        nextQuestion: toRef(state, 'nextQuestion'),
+        loadQuiz,
+        selectAnswer,
+        setQuestionId: state.setQuestionId
     };
 });

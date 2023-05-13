@@ -22,11 +22,11 @@
 
 <script setup>
 import {useRouter} from "vue-router";
-import Heading from "@/components/heading.vue";
-import QuestionField from "@/components/quiz-builder/question-field.vue";
-import QuestionsMenu from "@/components/quiz-builder/questions-menu.vue";
+import Heading from "@/components/heading";
+import QuestionField from "@/components/quiz-builder/question-field";
+import QuestionsMenu from "@/components/quiz-builder/questions-menu";
 import {useNewQuizStore} from "@/stores/new-quiz-store";
-import Button from "@/components/button/button.vue";
+import Button from "@/components/button/button";
 
 const newQuizStore = useNewQuizStore();
 const router = useRouter();
