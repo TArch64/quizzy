@@ -1,8 +1,16 @@
 <template>
     <div class="play-results">
-        <Heading level="1">
-            Results ({{ resultStore.score.correct }} / {{ resultStore.score.total }})
-        </Heading>
+        <div>
+            <Heading class="play-results__heading" level="1">
+                Results ({{ resultStore.score.correct }} / {{ resultStore.score.total }})
+            </Heading>
+
+            <ul class="play-results__answers">
+                <li v-for="answer of resultStore.answers">
+                    {{ getAnswerSymbol(answer) }} {{ answer.question }}
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -11,6 +19,8 @@ import Heading from "@/components/heading";
 import {usePlayResultStore} from "@/stores/play-result-store";
 
 const resultStore = usePlayResultStore();
+
+const getAnswerSymbol = (answer) => answer.isCorrect ? '\u2713' : '\u2613';
 </script>
 
 <style scoped>
@@ -19,5 +29,16 @@ const resultStore = usePlayResultStore();
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.play-results__heading {
+    margin-bottom: 24px;
+}
+
+.play-results__answers {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
 }
 </style>
