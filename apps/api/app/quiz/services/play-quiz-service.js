@@ -5,7 +5,7 @@ export class PlayQuizService {
         this.#prisma = prisma;
     }
 
-    async getQuizById(quizId) {
+    getQuizById(quizId) {
         return this.#prisma.quiz.findUnique({
             where: { id: quizId },
 
@@ -19,7 +19,7 @@ export class PlayQuizService {
         });
     }
 
-    async createResult({ quizId, answers }) {
+    createResult({ quizId, answers }) {
         return this.#prisma.quizResult.create({
             data: {
                 quizId,
