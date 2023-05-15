@@ -34,8 +34,8 @@
 </template>
 
 <script setup>
-import Button from "@/components/button/button";
-import {useNewQuizStore} from "@/stores/new-quiz-store";
+import { Button } from "../button";
+import { useNewQuizStore } from "@/stores";
 
 const newQuizStore = useNewQuizStore();
 

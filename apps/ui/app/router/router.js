@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import {loadPlayQuizMiddleware} from "@/router/middlewares/load-play-quiz-middleware";
-import {loadPlayResultMiddleware} from "@/router/middlewares/load-play-result-middleware";
+import { loadPlayQuizMiddleware, loadPlayResultMiddleware } from "./middlewares";
+import { Welcome, QuizNew, QuizNewSuccess, PlayQuestion, PlayResult } from '../views';
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,7 +8,7 @@ export const router = createRouter({
         {
             name: 'welcome',
             path: '/',
-            component: () => import('../views/welcome')
+            component: Welcome
         },
         {
             path: '/quiz',
@@ -16,12 +16,12 @@ export const router = createRouter({
                 {
                     name: 'new',
                     path: 'new',
-                    component: () => import('../views/quiz/new'),
+                    component: QuizNew
                 },
                 {
                     name: 'new-success',
                     path: ':quizId/success',
-                    component: () => import('../views/quiz/new-success')
+                    component: QuizNewSuccess
                 }
             ]
         },
@@ -29,13 +29,13 @@ export const router = createRouter({
             name: 'play-question',
             path: '/play/:quizId',
             beforeEnter: loadPlayQuizMiddleware,
-            component: () => import('../views/play/play-question')
+            component: PlayQuestion
         },
         {
             name: 'play-result',
             path: '/play-results/:resultId',
             beforeEnter: loadPlayResultMiddleware,
-            component: () => import('../views/play/play-result')
+            component: PlayResult
         }
     ]
 });

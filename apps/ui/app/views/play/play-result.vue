@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
-import Heading from "@/components/heading";
-import {usePlayResultStore} from "@/stores/play-result-store";
+import { Heading } from "@/components";
+import { usePlayResultStore } from "@/stores";
 
 const resultStore = usePlayResultStore();
 

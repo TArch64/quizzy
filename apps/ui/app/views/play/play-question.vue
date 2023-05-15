@@ -23,10 +23,9 @@
 </template>
 
 <script setup>
-import {useRouter} from "vue-router";
-import {usePlayStore} from "@/stores/play-store";
-import Heading from "@/components/heading";
-import Button from "@/components/button/button";
+import { useRouter } from "vue-router";
+import { usePlayStore } from "@/stores";
+import { Heading, Button } from "@/components";
 
 const playStore = usePlayStore();
 const router = useRouter();
@@ -35,7 +34,7 @@ async function selectAnswer(answer) {
     const data = await playStore.selectAnswer(answer);
 
     if (data.resultId) {
-        return router.push({
+        await router.push({
             name: 'play-result',
             params: { resultId: data.resultId },
         });

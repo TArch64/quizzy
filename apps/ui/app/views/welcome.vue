@@ -11,8 +11,7 @@
 </template>
 
 <script setup>
-import Heading from "@/components/heading";
-import Button from "@/components/button/button";
+import { Heading, Button } from "@/components";
 </script>
 
 <style scoped>

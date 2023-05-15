@@ -21,12 +21,9 @@
 </template>
 
 <script setup>
-import {useRouter} from "vue-router";
-import Heading from "@/components/heading";
-import QuestionField from "@/components/quiz-builder/question-field";
-import QuestionsMenu from "@/components/quiz-builder/questions-menu";
-import {useNewQuizStore} from "@/stores/new-quiz-store";
-import Button from "@/components/button/button";
+import { useRouter } from "vue-router";
+import { Heading, Button, QuestionField, QuestionsMenu  } from "@/components";
+import { useNewQuizStore } from "@/stores";
 
 const newQuizStore = useNewQuizStore();
 const router = useRouter();

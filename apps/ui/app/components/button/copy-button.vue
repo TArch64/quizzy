@@ -5,8 +5,8 @@
 </template>
 
 <script setup>
-import {computed, ref} from "vue";
-import Button from "@/components/button/button";
+import { computed, ref } from "vue";
+import Button from "./button";
 
 const props = defineProps({
     text: {

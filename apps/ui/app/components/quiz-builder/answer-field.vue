@@ -10,8 +10,7 @@
 </template>
 
 <script setup>
-import TextField from "@/components/form/text-field";
-import Radio from "@/components/form/radio";
+import { TextField, Radio } from "../form";
 
 defineProps({
     question: {

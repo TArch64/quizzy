@@ -1,4 +1,4 @@
-import {usePlayResultStore} from "@/stores/play-result-store";
+import { usePlayResultStore } from "@/stores";
 
 export async function loadPlayResultMiddleware(to, from, next) {
     const resultStore = usePlayResultStore();

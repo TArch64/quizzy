@@ -1,9 +1,8 @@
-import {ref, toRef} from "vue";
-import {defineStore} from "pinia";
-import {v4 as uuid} from "uuid";
+import { ref, toRef } from "vue";
+import { defineStore } from "pinia";
+import { v4 as uuid } from "uuid";
 import * as yup from 'yup';
-import {useList} from "@/composables/use-list";
-import {useHttp} from "@/composables/use-http";
+import { useList, useHttp } from "@/composables";
 
 const createAnswer = () => ({
     id: uuid(),

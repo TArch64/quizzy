@@ -1,4 +1,4 @@
-import {reactive, ref} from "vue";
+import { reactive, ref } from "vue";
 
 export function useList(initial = []) {
     const list = ref(initial);

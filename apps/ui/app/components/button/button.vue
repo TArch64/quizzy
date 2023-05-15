@@ -3,8 +3,8 @@
 </template>
 
 <script setup>
-import {computed, h, normalizeClass, useSlots} from "vue";
-import {RouterLink} from "vue-router";
+import { computed, h, normalizeClass, useSlots } from "vue";
+import { RouterLink } from "vue-router";
 
 const props = defineProps({
     to: {

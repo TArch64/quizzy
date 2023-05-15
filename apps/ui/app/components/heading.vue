@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import {h, useSlots} from "vue";
+import { h, useSlots } from "vue";
 
 const props = defineProps({
     level: {

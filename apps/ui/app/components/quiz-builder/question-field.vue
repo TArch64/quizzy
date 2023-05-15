@@ -15,10 +15,10 @@
 </template>
 
 <script setup>
-import {toRef} from "vue";
-import TextField from "@/components/form/text-field";
-import AnswerField from "@/components/quiz-builder/answer-field";
-import {useNewQuizStore} from "@/stores/new-quiz-store";
+import { toRef } from "vue";
+import { useNewQuizStore } from "@/stores";
+import { TextField } from "../form";
+import AnswerField from "./answer-field";
 
 const newQuizStore = useNewQuizStore();
 const activeQuestion = toRef(newQuizStore, 'activeQuestion');

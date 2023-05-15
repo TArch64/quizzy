@@ -15,11 +15,9 @@
 </template>
 
 <script setup>
-import {computed} from "vue";
-import {useRoute} from "vue-router";
-import CopyButton from "@/components/button/copy-button";
-import Button from "@/components/button/button";
-import Heading from "@/components/heading";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import { CopyButton, Button, Heading } from "@/components";
 
 const route = useRoute();
 
