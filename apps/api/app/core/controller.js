@@ -21,6 +21,10 @@ export class Controller {
             try {
                 res.json(await handler(req));
             } catch (error) {
+                if (error instanceof Error) {
+                    res.status(500).json({ error: error.toString() });
+                    return;
+                }
                 res.status(500).json({ error });
             }
         }

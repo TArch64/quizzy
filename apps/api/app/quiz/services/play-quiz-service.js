@@ -38,7 +38,19 @@ export class PlayQuizService {
         };
     }
 
-    getResultById(resultId) {
+    async getResultById(resultId) {
+        const result = await this.#loadResultData(resultId);
+        const answers = this.#formatResultAnswers(result);
+        const score = this.#formatResultScore(answers);
+
+        return {
+            quizId: result.quizId,
+            answers,
+            score
+        }
+    }
+
+    #loadResultData(resultId) {
         return this.#prisma.quizResult.findUnique({
             where: { id: resultId },
 
@@ -66,5 +78,19 @@ export class PlayQuizService {
                 }
             }
         });
+    }
+
+    #formatResultAnswers(result) {
+        return result.answers.map((answer) => ({
+            question: answer.question.text,
+            isCorrect: answer.selectedId === answer.question.correctId,
+        }));
+    }
+
+    #formatResultScore(answers) {
+        return {
+            correct: answers.filter(answer => answer.isCorrect).length,
+            total: answers.length,
+        };
     }
 }

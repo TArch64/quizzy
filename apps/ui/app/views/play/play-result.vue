@@ -6,7 +6,7 @@
             </Heading>
 
             <ul class="play-results__answers">
-                <li v-for="answer of resultStore.answers">
+                <li v-for="answer of resultStore.result.answers">
                     {{ getAnswerSymbol(answer) }} {{ answer.question }}
                 </li>
             </ul>
@@ -26,7 +26,7 @@ import { usePlayResultStore } from "@/stores";
 const resultStore = usePlayResultStore();
 
 const score = computed(() => {
-    const { correct, total } = resultStore.score;
+    const { correct, total } = resultStore.result.score;
     const percent = (correct / total) * 100;
     return percent.toFixed(2).replace('.00', '');
 });
@@ -35,7 +35,7 @@ const getAnswerSymbol = (answer) => answer.isCorrect ? '\u2713' : '\u2613';
 
 const quizPlayRoute = computed(() => ({
     name: 'play-question',
-    params: { quizId: resultStore.quizId }
+    params: { quizId: resultStore.result.quizId }
 }));
 </script>
 
