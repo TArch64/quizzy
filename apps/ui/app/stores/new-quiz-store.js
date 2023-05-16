@@ -1,7 +1,7 @@
 import { ref, toRef } from "vue";
 import { defineStore } from "pinia";
-import { useList, useHttp } from "@/composables";
-import { createQuestion, createQuizSchema } from "@/utils";
+import { useList, useHttp } from "../composables";
+import { createQuestion, createQuizSchema } from "../utils";
 
 export const useNewQuizStore = defineStore('new-quiz', () => {
     const http = useHttp();

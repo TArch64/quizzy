@@ -35,7 +35,7 @@
 
 <script setup>
 import { Button } from "../button";
-import { useNewQuizStore } from "@/stores";
+import { useNewQuizStore } from "../../stores";
 
 const newQuizStore = useNewQuizStore();
 
