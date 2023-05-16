@@ -11,4 +11,10 @@ export class Config {
             host: this.#env.API_HOST
         };
     }
+
+    get prisma() {
+        return {
+            log: ['query', 'info', 'warn', 'error'],
+        };
+    }
 }

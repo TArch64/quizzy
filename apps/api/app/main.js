@@ -10,10 +10,7 @@ import {QuizResultController} from "./quiz/quiz-result-controller.js";
 
 const config = new Config({ env: process.env });
 const logger = new Logger();
-
-const prisma = new PrismaClient({
-    log: ['query', 'info', 'warn', 'error'],
-});
+const prisma = new PrismaClient(config.prisma);
 
 const app = new App({
     server: express(),
