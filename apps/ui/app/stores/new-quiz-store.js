@@ -1,13 +1,13 @@
 import { ref, toRef } from "vue";
 import { defineStore } from "pinia";
-import { useList, useHttp } from "../composables";
+import { useCollection, useHttp } from "../composables";
 import { createQuestion, createQuizSchema } from "../utils";
 
 export const useNewQuizStore = defineStore('new-quiz', () => {
     const http = useHttp();
 
     const quizSchema = createQuizSchema();
-    const questions = useList([createQuestion()]);
+    const questions = useCollection([createQuestion()]);
     const activeQuestion = ref(questions.list[0]);
     const activateQuestion = (question) => activeQuestion.value = question;
 

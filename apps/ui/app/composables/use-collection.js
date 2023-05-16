@@ -1,6 +1,6 @@
 import { reactive, ref } from "vue";
 
-export function useList(initial = []) {
+export function useCollection(initial = []) {
     const list = ref(initial);
     const add = (item) => list.value = list.value.concat(item);
 
