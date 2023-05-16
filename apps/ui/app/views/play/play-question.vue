@@ -24,8 +24,8 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { usePlayStore } from "@/stores";
-import { Heading, Button } from "@/components";
+import { usePlayStore } from "../../stores";
+import { Heading, Button } from "../../components";
 
 const playStore = usePlayStore();
 const router = useRouter();

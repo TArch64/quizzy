@@ -1,4 +1,4 @@
-import { usePlayStore } from "@/stores";
+import { usePlayStore } from "../../stores";
 
 export async function loadPlayQuizMiddleware(to, from, next) {
     const playStore = usePlayStore();

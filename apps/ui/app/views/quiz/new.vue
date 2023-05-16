@@ -22,8 +22,8 @@
 
 <script setup>
 import { useRouter } from "vue-router";
-import { Heading, Button, QuestionField, QuestionsMenu  } from "@/components";
-import { useNewQuizStore } from "@/stores";
+import { Heading, Button, QuestionField, QuestionsMenu  } from "../../components";
+import { useNewQuizStore } from "../../stores";
 
 const newQuizStore = useNewQuizStore();
 const router = useRouter();

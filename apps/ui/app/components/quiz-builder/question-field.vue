@@ -16,7 +16,7 @@
 
 <script setup>
 import { toRef } from "vue";
-import { useNewQuizStore } from "@/stores";
+import { useNewQuizStore } from "../../stores";
 import { TextField } from "../form";
 import AnswerField from "./answer-field";
 

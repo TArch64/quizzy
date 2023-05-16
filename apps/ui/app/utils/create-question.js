@@ -1,5 +1,5 @@
-import {createAnswer} from "@/utils/create-answer";
 import {v4 as uuid} from "uuid";
+import {createAnswer} from "./create-answer";
 
 export function createQuestion() {
     const answers = [

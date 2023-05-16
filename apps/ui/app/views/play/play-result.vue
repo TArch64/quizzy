@@ -20,8 +20,8 @@
 
 <script setup>
 import { computed } from "vue";
-import { Heading, Button } from "@/components";
-import { usePlayResultStore } from "@/stores";
+import { Heading, Button } from "../../components";
+import { usePlayResultStore } from "../../stores";
 
 const resultStore = usePlayResultStore();
 

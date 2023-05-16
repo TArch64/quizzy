@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import { useHttp } from "@/composables";
+import { useHttp } from "../composables";
 
 export const usePlayResultStore = defineStore('playResult', () => {
     const http = useHttp();
