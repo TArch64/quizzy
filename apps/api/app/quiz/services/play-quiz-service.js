@@ -43,6 +43,8 @@ export class PlayQuizService {
             where: { id: resultId },
 
             select: {
+                quizId: true,
+
                 answers: {
                     select: {
                         selectedId: true,

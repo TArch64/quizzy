@@ -29,9 +29,12 @@ export const usePlayResultStore = defineStore('playResult', () => {
         };
     });
 
+    const quizId = computed(() => result.value.quizId);
+
     return {
         answers,
         load,
-        score
+        score,
+        quizId
     };
 });

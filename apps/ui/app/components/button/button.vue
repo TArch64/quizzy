@@ -66,6 +66,7 @@ const classes = computed(() => ({
     color: inherit;
     cursor: pointer;
     text-decoration: none;
+    display: inline-block;
 
     &:hover,
     &:focus,

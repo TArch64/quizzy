@@ -4,9 +4,9 @@ import { useHttp } from "@/composables";
 
 export const usePlayStore = defineStore('play', () => {
     const http = useHttp();
-    const activeQuiz = ref(null);
+    const activeQuiz = ref({});
     const activeQuestion = ref(null);
-    const answeredQuestions = [];
+    let answeredQuestions = [];
 
     const questions = computed(() => activeQuiz.value?.questions ?? []);
 
@@ -22,6 +22,8 @@ export const usePlayStore = defineStore('play', () => {
 
     async function loadQuiz(quizId) {
         if (activeQuiz.value?.id === quizId) return;
+
+        answeredQuestions = [];
 
         const data = await http.get(`/api/quiz/${quizId}`);
         activeQuiz.value = data.quiz;
@@ -45,6 +47,8 @@ export const usePlayStore = defineStore('play', () => {
             quizId: activeQuiz.value.id,
             answers: answeredQuestions
         });
+
+        activeQuiz.value = {};
 
         return { resultId: data.result.id }
     }
