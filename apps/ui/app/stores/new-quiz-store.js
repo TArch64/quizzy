@@ -1,49 +1,12 @@
 import { ref, toRef } from "vue";
 import { defineStore } from "pinia";
-import { v4 as uuid } from "uuid";
-import * as yup from 'yup';
 import { useList, useHttp } from "@/composables";
-
-const createAnswer = () => ({
-    id: uuid(),
-    text: ''
-})
-
-function createQuestion() {
-    const answers = [
-        createAnswer(),
-        createAnswer(),
-        createAnswer(),
-        createAnswer()
-    ];
-
-    return {
-        id: uuid(),
-        text: '',
-        answers,
-        correctId: answers[0].id
-    };
-}
-
-const quizAnswerSchema = yup.object({
-    id: yup.string().required().uuid(),
-    text: yup.string().required()
-});
-
-const quizQuestionSchema = yup.object({
-    id: yup.string().required().uuid(),
-    text: yup.string().required(),
-    answers: yup.array().length(4).of(quizAnswerSchema),
-    correctId: yup.string().uuid().required()
-});
-
-const quizSchema = yup.object({
-    questions: yup.array().min(1).of(quizQuestionSchema)
-});
+import { createQuestion, createQuizSchema } from "@/utils";
 
 export const useNewQuizStore = defineStore('new-quiz', () => {
     const http = useHttp();
 
+    const quizSchema = createQuizSchema();
     const questions = useList([createQuestion()]);
     const activeQuestion = ref(questions.list[0]);
     const activateQuestion = (question) => activeQuestion.value = question;

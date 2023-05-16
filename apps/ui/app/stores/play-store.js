@@ -4,7 +4,7 @@ import { useHttp } from "@/composables";
 
 export const usePlayStore = defineStore('play', () => {
     const http = useHttp();
-    const activeQuiz = ref({});
+    const activeQuiz = ref(null);
     const activeQuestion = ref(null);
     let answeredQuestions = [];
 
@@ -21,10 +21,7 @@ export const usePlayStore = defineStore('play', () => {
     const setActiveQuestion = question => activeQuestion.value = question;
 
     async function loadQuiz(quizId) {
-        if (activeQuiz.value?.id === quizId) return;
-
         answeredQuestions = [];
-
         const data = await http.get(`/api/quiz/${quizId}`);
         activeQuiz.value = data.quiz;
         setActiveQuestion(activeQuiz.value.questions[0]);
@@ -48,11 +45,8 @@ export const usePlayStore = defineStore('play', () => {
             answers: answeredQuestions
         });
 
-        activeQuiz.value = {};
-
         return { resultId: data.result.id }
     }
-
     return {
         activeQuiz,
         activeQuestion,
