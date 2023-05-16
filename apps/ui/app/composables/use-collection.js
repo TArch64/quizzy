@@ -8,6 +8,9 @@ export function useCollection(initial = []) {
 
     function remove(id) {
         const index = findIndex(id);
+
+        if (index === -1) return null;
+
         const removed = list.value[index];
         const updated = list.value.slice();
         updated.splice(index, 1);
