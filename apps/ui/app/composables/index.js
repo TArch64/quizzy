@@ -1,2 +1,2 @@
 export {useHttp} from './use-http';
-export {useList} from './use-list';
+export {useCollection} from './use-collection';
