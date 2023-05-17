@@ -19,10 +19,10 @@ export class Controller {
     #decorateHandler(handler) {
         return async (req, res) => {
             try {
-                res.json(await handler(req));
+                res.status(200).json(await handler(req));
             } catch (error) {
                 if (error instanceof Error) {
-                    res.status(500).json({ error: error.toString() });
+                    res.status(500).json({ error: error.message });
                     return;
                 }
                 res.status(500).json({ error });
