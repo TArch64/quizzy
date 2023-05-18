@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create quiz should format db payload 1`] = `
+[
+  {
+    "data": {
+      "questions": {
+        "create": [
+          {
+            "answers": {
+              "create": [
+                {
+                  "id": "first-answer",
+                  "text": "first",
+                },
+                {
+                  "id": "second-answer",
+                  "text": "second",
+                },
+              ],
+            },
+            "correctId": "first-answer",
+            "id": 1,
+            "text": "first-question",
+          },
+        ],
+      },
+    },
+  },
+]
+`;
